@@ -1,0 +1,110 @@
+:root {
+  font-family: "Courier New", monospace;
+  color: #4B5B5C;
+  background: #FAF6E6;
+  --paper: #FAF6E6;
+  --ink: #4B5B5C;
+  --green: #09D6A0;
+  --yellow: #FFD166;
+  --red: #ED5437;
+  --line: #4B5B5C;
+}
+
+* { box-sizing: border-box; }
+body { min-width: 320px; margin: 0; }
+button { font: inherit; color: inherit; }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 82px;
+  padding: 14px 5vw;
+  border-bottom: 2px dashed var(--line);
+}
+
+.brand-block { display: flex; align-items: center; gap: 12px; }
+.brand-block strong { font-size: 17px; }
+.logo {
+  display: grid;
+  width: 78px;
+  height: 46px;
+  place-items: center;
+  border: 1px dashed var(--line);
+  color: var(--ink);
+  background: transparent;
+  font-size: 11px;
+}
+
+.desktop-nav { display: flex; flex-wrap: wrap; gap: 7px; }
+.nav-button, .page-buttons button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  cursor: default;
+}
+.nav-button.is-current { border: 2px solid var(--ink); background: var(--yellow); }
+.nav-button:disabled, .page-buttons button:disabled { opacity: 1; }
+.nav-button small, .page-buttons small { color: #727b7a; font-size: 10px; }
+.menu-toggle, .mobile-menu { display: none; }
+
+main { max-width: 1050px; margin: 0 auto; padding: 36px 5vw 70px; }
+.welcome-page { min-height: 570px; border: 2px dashed var(--line); }
+.page-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 15px;
+  border-bottom: 1px dashed var(--line);
+  background: rgba(255, 209, 102, .22);
+  font-size: 11px;
+}
+.welcome { max-width: 690px; padding: clamp(24px, 6vw, 65px); }
+.eyebrow { margin: 0; color: #687372; font-size: 11px; }
+h1 { margin: 14px 0; color: var(--ink); font-size: clamp(36px, 8vw, 72px); letter-spacing: -.06em; }
+.intro { margin: 0; font-size: clamp(15px, 2.5vw, 20px); }
+.note { max-width: 475px; margin: 28px 0 0; padding: 12px; border-left: 4px solid var(--green); background: rgba(9, 214, 160, .12); font-size: 13px; line-height: 1.5; }
+.section-placeholders { margin: 4px clamp(24px, 6vw, 65px) 0; padding-top: 18px; border-top: 1px dashed var(--line); }
+.section-placeholders > p { margin: 0 0 12px; color: #687372; font-size: 10px; }
+.page-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.page-buttons button { background: rgba(250, 246, 230, .7); }
+.page-buttons button:nth-child(2n) { border-style: dashed; }
+.page-buttons button span { color: var(--red); font-size: 10px; }
+.draft-footnote { margin: 36px clamp(24px, 6vw, 65px) 22px; color: #687372; font-size: 11px; }
+
+@media (max-width: 760px) {
+  .site-header { min-height: 68px; padding: 10px 16px; }
+  .brand-block strong { font-size: 14px; }
+  .logo { width: 64px; height: 38px; }
+  .desktop-nav { display: none; }
+  .menu-toggle { display: block; min-width: 43px; min-height: 40px; border: 1px solid var(--line); background: var(--yellow); font-size: 20px; }
+  .mobile-menu.is-open {
+    position: absolute;
+    z-index: 2;
+    top: 68px;
+    right: 0;
+    left: 0;
+    display: grid;
+    gap: 8px;
+    padding: 18px;
+    border-bottom: 2px dashed var(--line);
+    background: var(--paper);
+  }
+  .mobile-menu__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .menu-close { width: 38px; height: 38px; border: 1px solid var(--line); background: transparent; font-size: 23px; }
+  .mobile-menu .nav-button { justify-content: space-between; width: 100%; }
+  main { padding: 24px 14px 48px; }
+  .welcome-page { min-height: 0; }
+  .page-label { font-size: 9px; }
+  .welcome { padding: 28px 20px; }
+  .section-placeholders { margin-right: 20px; margin-left: 20px; }
+  .page-buttons { display: grid; grid-template-columns: 1fr 1fr; }
+  .page-buttons button { justify-content: flex-start; flex-wrap: wrap; }
+  .draft-footnote { margin-right: 20px; margin-left: 20px; line-height: 1.5; }
+}
