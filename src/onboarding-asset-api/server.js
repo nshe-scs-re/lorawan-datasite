@@ -3,25 +3,18 @@ const db = require("./db");
 
 const app = express();
 
-app.use(express.json);
+app.use(express.json());
 
-// Check whether the API is running
-app.get("/api/health", (req, res) => {
-    res.json({
-        status: "ok"
-    });
-});
-
-// Retrieve all assets
-app.get("/api/assets", (req, res) => {
+// Endpoint
+app.get("/asset", (req, res) => {
     try {
-        const assets = db
-            .prepare("SELECT * FROM assets")
-            .all();
+        const asset = db.prepare(
+            "SELECT * FROM asset"
+        ).all();
 
-        res.json(assets);
+        res.json(asset);
     } catch (error) {
-        console.error("Failed to retrieve assets:", error.message);
+        console.error("Failed to retrieve assets:", error);
 
         res.status(500).json({
             error: "Failed to retrieve assets"
@@ -29,7 +22,11 @@ app.get("/api/assets", (req, res) => {
     }
 });
 
-// need to not hardcode this mayhaps
+app.get("/", (req, res) => {
+    res.send("Onboarding API is running!");
+});
+
 app.listen(3000, () => {
     console.log("API running on port 3000");
 });
+

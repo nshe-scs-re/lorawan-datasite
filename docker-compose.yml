@@ -1,0 +1,8 @@
+services:
+  ui:
+
+  onboarding-asset-api:
+
+  onboarding-asset-db:
+
+networks:
