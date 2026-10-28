@@ -109,3 +109,82 @@ h1 { margin: 14px 0; color: var(--ink); font-size: clamp(36px, 8vw, 72px); lette
   .page-buttons button { justify-content: flex-start; flex-wrap: wrap; }
   .welcome-footnote { margin-right: 20px; margin-left: 20px; line-height: 1.5; }
 }
+
+
+/* Asset display on the Test page */
+.asset-container {
+    margin-top: 2rem;
+    max-width: 750px;
+    padding: 1.5rem;
+
+    border: 1px solid var(--border-color, #526363);
+    border-radius: 8px;
+
+    background: #fffdf5;
+}
+
+/* Title and record badge */
+.asset-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    margin-bottom: 1.5rem;
+}
+
+.asset-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.asset-badge {
+    padding: 0.35rem 0.65rem;
+
+    border: 1px solid #526363;
+    border-radius: 4px;
+
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+}
+
+/* Label and textarea */
+.asset-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.asset-field label {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.asset-field textarea {
+    display: block;
+
+    width: 100%;
+    min-height: 160px;
+    box-sizing: border-box;
+
+    padding: 1rem;
+
+    border: 1px solid #526363;
+    border-radius: 5px;
+
+    background: #faf6e6;
+    color: #526363;
+
+    font: inherit;
+    line-height: 1.6;
+
+    resize: vertical;
+}
+
+/* Loading / success message */
+.asset-status {
+    margin: 0.75rem 0 0;
+
+    font-size: 0.85rem;
+    opacity: 0.75;
+}

@@ -12,6 +12,50 @@ const state = {
   activePage: "Welcome",
 };
 
+interface Asset {
+    asset_id: number;
+    title: string;
+    description: string | null;
+    file_path: string;
+    file_type: string;
+}
+
+async function loadAsset(): Promise<void> {
+    const titleElement =
+        root.querySelector<HTMLHeadingElement>("#asset-title");
+
+    const descriptionElement =
+        root.querySelector<HTMLTextAreaElement>("#asset-description");
+
+    const statusElement =
+        root.querySelector<HTMLParagraphElement>("#asset-status");
+
+    if (!titleElement || !descriptionElement || !statusElement) {
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/assets/1");
+
+        if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+        }
+
+        const asset: Asset = await response.json();
+
+        titleElement.textContent = asset.title;
+        descriptionElement.value = asset.description ?? "";
+
+        statusElement.textContent = "Asset loaded successfully.";
+    } catch (error) {
+        console.error("Failed to load asset:", error);
+
+        titleElement.textContent = "Unable to load asset";
+        statusElement.textContent =
+            "Could not retrieve the asset from the API.";
+    }
+}
+
 // Render the active page and navigation from the current UI state.
 function render(): void {
   root.innerHTML = `<header class="site-header">
@@ -76,10 +120,36 @@ function render(): void {
       </section>
 
       <section class="test-page" aria-labelledby="test-title" ${state.activePage === "Test" ? "" : "hidden"}>
-        <div class="page-label"><span>PAGE 05</span><span>TEST</span></div>
+        <div class="page-label">
+          <span>PAGE 05</span>
+          <span>TEST</span>
+        </div>
+
         <div class="test">
           <p class="eyebrow">TEST PAGE</p>
           <h1 id="test-title">Test page</h1>
+
+          <div class="asset-container">
+            <div class="asset-header">
+              <h2 id="asset-title">Loading asset...</h2>
+              <span class="asset-badge">DATABASE RECORD</span>
+            </div>
+
+          <div class="asset-field">
+            <label for="asset-description">
+              Asset Description
+            </label>
+
+            <textarea
+              id="asset-description"
+              rows="5"
+              readonly
+              placeholder="Asset description will appear here..."
+            ></textarea>
+          </div>
+
+          <p id="asset-status" class="asset-status"></p>
+        </div>
         </div>
       </section>
     </main>`;
@@ -100,6 +170,11 @@ function render(): void {
       render();
     });
   });
+
+  if (state.activePage === "Test") {
+      console.log("Test page is active. Calling loadAsset()");
+    loadAsset();
+}
 }
 
 // Render the welcome page immediately.

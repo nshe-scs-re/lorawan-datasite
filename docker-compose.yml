@@ -1,8 +1,38 @@
 services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: lorawan-tcc-nginx
+    container_name: lorawan-tcc-nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - ui
+      - onboarding-asset-api
+    restart: unless-stopped
+
   ui:
+    build:
+      context: ./src/ui
+      dockerfile: Dockerfile
+    image: lorawan-tcc-ui
+    container_name: lorawan-tcc-ui
+    expose:
+      - "80"
+    restart: unless-stopped
 
   onboarding-asset-api:
-
-  onboarding-asset-db:
-
-networks:
+    build:
+      context: ./src/onboarding-asset-api
+      dockerfile: Dockerfile
+    image: lorawan-tcc-api
+    container_name: lorawan-tcc-api
+    expose:
+      - "3000"
+    environment:
+      PORT: 3000
+      DB_PATH: /app/db/web_assets.db
+    volumes:
+      - ./db:/app/db
+    restart: unless-stopped

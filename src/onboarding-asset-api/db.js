@@ -3,7 +3,7 @@
 const Database = require("better-sqlite3");
 const path = require("node:path");
 
-const dbPath = path.resolve(
+const dbPath = process.env.DB_PATH || path.resolve(
     __dirname,
     "../../db/web_assets.db"
 );
