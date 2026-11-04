@@ -1,6 +1,6 @@
 // For db initialization
 
-const Database = require("../src/onboarding-asset-api/node_modules/better-sqlite3");
+const Database = require("better-sqlite3");
 const fs = require("node:fs");
 const path = require('path');
 
@@ -20,7 +20,7 @@ try {
 
     db.exec(schema);
 
-    console.log("Database initialized successfully.");
+    console.log("Website asset database initialized successfully.");
 } finally {
     db.close();
 }

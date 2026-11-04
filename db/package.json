@@ -2,8 +2,12 @@
   "name": "db",
   "version": "1.0.0",
   "description": "",
-  "main": "web_db.js",
   "scripts": {
+    "db:init:assets": "node web_db.js",
+    "db:init:onboarding": "node onboarding_request_db.js",
+    "db:init:users": "node user_login_db.js",
+    "db:init:all": "npm run db:init:assets && npm run db:init:onboarding && npm run db:init:users",
+    "db:asset:tool": "node asset_db_tool.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
