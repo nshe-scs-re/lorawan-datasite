@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./styles/styles.css";
 
 // Looks for the root element in HTML and throws error if not found.
 const rootElement = document.querySelector<HTMLDivElement>("#app");
