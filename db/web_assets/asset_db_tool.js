@@ -1,3 +1,5 @@
+// For ease of adding to the web_assets db
+// Author: Jacob Campau
 
 const Database = require("better-sqlite3");
 const readline = require("node:readline/promises");
@@ -41,26 +43,24 @@ async function main() {
                     case "2":
                         viewAllAssetIds(db);
                         break;
-                    case "3":{
-                        const assetId = Number(await rl.question("Enter asset ID: "));
-                        if (assetId <= 0) {
+                    case "3":
+                        const editAssetId = Number(await rl.question("Enter asset ID: "));
+                        if (editAssetId <= 0) {
                             console.log("Please enter a valid asset ID.");
                             break;
                         }
 
-                        await editAsset(db, assetId);
+                        await editAsset(db, editAssetId);
                         break;
-                    }
-                    case "4":{
-                        const assetId = Number(await rl.question("Enter asset ID: "));
-                        if (assetId <= 0) {
+                    case "4":
+                        const viewAssetId = Number(await rl.question("Enter asset ID: "));
+                        if (viewAssetId <= 0) {
                             console.log("Please enter a valid asset ID.");
                             break;
                         }
                         
-                        viewAssetDetails(db, assetId);
+                        viewAssetDetails(db, viewAssetId);
                         break;
-                    }
                     case "5":
                         running = false;
                         break;

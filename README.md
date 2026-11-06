@@ -14,9 +14,7 @@ browser to see the page. The dev server keeps running while viewing the UI, so, 
 
 ## Web asset database tool
 
-To make the addition of website assets easier when adding text, a javascript tool has been created. To run the rool, cd into the `db` folder and run the following:
-
-        "npm db:asset:tool"
+To make the addition of website assets easier when adding text, a javascript tool has been created. To run the rool, cd into the `db` folder and run the following: `npm db:asset:tool`
 
 This will open a menu with the following options:
 1. Add new asset

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "db:init:assets": "node web_db.js",
-    "db:init:onboarding": "node onboarding_request_db.js",
-    "db:init:users": "node user_login_db.js",
+    "db:init:assets": "node web_assets/web_assets_init.js",
+    "db:init:onboarding": "node onboarding_requests/onboarding_request_init.js",
+    "db:init:users": "node user_logins/user_login_init.js",
     "db:init:all": "npm run db:init:assets && npm run db:init:onboarding && npm run db:init:users",
-    "db:asset:tool": "node asset_db_tool.js",
+    "db:asset:tool": "node web_assets/asset_db_tool.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -1,13 +1,14 @@
 // For db initialization
+// Author: Jacob Campau
 
 const Database = require("better-sqlite3");
 const fs = require("node:fs");
 const path = require('path');
 
-const dbPath = path.join(__dirname, 'onboarding_request.db');
+const dbPath = path.join(__dirname, 'user_login.db');
 const schemaPath = path.join(
     __dirname,
-    "onboarding_request_schema.sql"
+    "user_login_schema.sql"
 );
 
 const db = new Database(dbPath);
@@ -20,9 +21,7 @@ try {
 
     db.exec(schema);
 
-    console.log("Onboarding request database initialized successfully.");
+    console.log("User login database initialized successfully.");
 } finally {
     db.close();
 }
-
-module.exports = db;

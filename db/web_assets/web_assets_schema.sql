@@ -1,3 +1,5 @@
+-- Author: Jacob Campau
+
 -- 'PRAGMA foreign_keys = ON' must be included on each application connection. This allows for cascading DELETE.
 PRAGMA foreign_keys = ON;
 
