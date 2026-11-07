@@ -7,6 +7,7 @@ export class SoilMoistureData extends Data{
     tempC:number;
     waterSatPerc:number;
     conductUscm:number;
+    override hexColor:string = "#88E788";
 
     constructor(gatewayTime:Date, sensorInt:number, tempC:number,waterSatPerc:number, conductUscm:number){
         super(gatewayTime);

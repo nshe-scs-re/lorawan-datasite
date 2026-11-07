@@ -5,6 +5,7 @@ import { Data } from "./Data";
 export class TiltData extends Data{
     roll:number;
     pitch:number;
+    override hexColor:string = "#ADD8E6";
 
     constructor(gatewayTime:Date, roll:number, pitch:number){
         super(gatewayTime);

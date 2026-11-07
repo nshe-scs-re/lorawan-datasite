@@ -2,6 +2,7 @@
 
 export abstract class Data{
     gatewayTime:Date;
+    hexColor:string = "#808080" //grey by default, overridden by children
 
     constructor(gatewayTime:Date){
         this.gatewayTime = gatewayTime;
@@ -10,6 +11,10 @@ export abstract class Data{
     getGatewayTime():Date{
         return this.gatewayTime;
     }
+    
+    getHexColor():string{
+        return this.hexColor;
+    };
 
     abstract getMeasurements():Record<string, number>;
 
@@ -23,5 +28,9 @@ export abstract class Data{
 
     setGatewayTime(newGatewayTime:Date){
         this.gatewayTime = newGatewayTime;
+    }
+
+    setHexColor(newColor:string){
+        this.hexColor = newColor;
     }
 }

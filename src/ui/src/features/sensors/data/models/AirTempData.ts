@@ -5,6 +5,7 @@ import { Data } from "./Data";
 export class AirTempData extends Data{
     sensorInt:number;
     tempC:number;
+    override hexColor:string = "#FFD580";
 
     constructor(gatewayTime:Date, sensorInt:number, tempC:number){
         super(gatewayTime);

@@ -12,7 +12,6 @@ import { SensorComment } from "../sensors/sensor_information/models/SensorCommen
 const mockProject1 = new Project("Jacob's Home Test");
 const mockProject2 = new Project("Gotta be a second project name here fs");
 const defaultContactInfo = {contactFName: "Jacobo", contactLName: "comp", email: "email@getanemail.com"};
-const sensorTypeColors = {soil_moisture: "#88E788", air_temperature: "#FFD580", tilt: "#ADD8E6"};
 
 const sensor1 = new MapSensor(
     "0000000000000001",
@@ -26,7 +25,7 @@ const sensor1 = new MapSensor(
     4,
     new ProjectHistory(
         mockProject1,
-        "defaultContactInfo.contactFName",
+        defaultContactInfo.contactFName,
         defaultContactInfo.contactLName,
         defaultContactInfo.email,
         new Deployment(
@@ -35,8 +34,6 @@ const sensor1 = new MapSensor(
             39.5296
         )
     ),
-    true,
-    sensorTypeColors.soil_moisture,
     [new SoilMoistureData(
         new Date(),
         1,
@@ -58,7 +55,7 @@ const sensor2 = new MapSensor(
     4,
     new ProjectHistory(
         mockProject1,
-        "defaultContactInfo.contactFName",
+        defaultContactInfo.contactFName,
         defaultContactInfo.contactLName,
         defaultContactInfo.email,
         new Deployment(
@@ -67,10 +64,8 @@ const sensor2 = new MapSensor(
             39.5421
         )
     ),
-    false,
-    sensorTypeColors.soil_moisture,
     [new SoilMoistureData(
-        new Date(),
+        new Date(new Date().getTime() - 72*60*60*1000),
         1,
         17.2,
         32.4,
@@ -90,7 +85,7 @@ const sensor3 = new MapSensor(
     4,
     new ProjectHistory(
         mockProject2,
-        "defaultContactInfo.contactFName",
+        defaultContactInfo.contactFName,
         defaultContactInfo.contactLName,
         defaultContactInfo.email,
         new Deployment(
@@ -99,8 +94,6 @@ const sensor3 = new MapSensor(
             39.5182
         )
     ),
-    true,
-    sensorTypeColors.air_temperature,
     [new AirTempData(
         new Date(),
         1,
@@ -120,7 +113,7 @@ const sensor4 = new MapSensor(
     4,
     new ProjectHistory(
         mockProject1,
-        "defaultContactInfo.contactFName",
+        defaultContactInfo.contactFName,
         defaultContactInfo.contactLName,
         defaultContactInfo.email,
         new Deployment(
@@ -129,8 +122,6 @@ const sensor4 = new MapSensor(
             39.5561
         )
     ),
-    true,
-    sensorTypeColors.air_temperature,
     [new AirTempData(
         new Date(),
         1,
@@ -150,7 +141,7 @@ const sensor5 = new MapSensor(
     4,
     new ProjectHistory(
         mockProject2,
-        "defaultContactInfo.contactFName",
+        defaultContactInfo.contactFName,
         defaultContactInfo.contactLName,
         defaultContactInfo.email,
         new Deployment(
@@ -159,10 +150,8 @@ const sensor5 = new MapSensor(
             39.5743
         )
     ),
-    false,
-    sensorTypeColors.tilt,
     [new TiltData(
-        new Date(),
+        new Date(new Date().getTime() - 72*60*60*1000),
         2.3,
         -1.5,
     )]

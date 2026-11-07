@@ -5,25 +5,35 @@ import { SensorComment } from "../../sensor_information/models/SensorComment";
 import { ProjectHistory } from "../../sensor_information/models/ProjectHistory";
 import { Data } from "../../data/models/Data";
 
+// Hours until sensor is considered "disconnected"
+const maxHoursSinceLastData = 12;
+
 export class MapSensor extends SensorInformation{
-    connectionStatus:boolean;
-    hexColor:string;
+    connectionStatus:boolean = true;
     sensorData:Data[];
 
     constructor(devEUI: string, devName: string, deviceType: string, comments: SensorComment[], closeUpAssetId:number, contextAssetId:number, history: ProjectHistory, 
-                connectionStatus: boolean, hexColor: string, sensorData: Data[]){
+                sensorData: Data[]){
         super(devEUI, devName, deviceType, comments, closeUpAssetId, contextAssetId, history);
-        this.connectionStatus = connectionStatus;
-        this.hexColor = hexColor;
         this.sensorData = sensorData;
     }
 
     getConnectionStatus():boolean{
-        return this.connectionStatus;
-    }
+        const maxTimeSinceData = maxHoursSinceLastData*60*60*1000; // Currently 12 hours
+        const latestData = this.sensorData.at(-1);
 
-    getHexColor():string{
-        return this.hexColor;
+        if(!latestData){
+            // No sensor data retrieved, assume it is offline
+            this.connectionStatus = false;
+            return false;
+        }
+
+        if(new Date().getTime() - latestData.getGatewayTime().getTime() > maxTimeSinceData){
+            // Sensor has not received new data within the time period
+            this.connectionStatus = false;
+        }
+
+        return this.connectionStatus;
     }
 
     getSensorData():Data[]{
@@ -40,10 +50,6 @@ export class MapSensor extends SensorInformation{
 
     setConnectionStatus(newStatus:boolean){
         this.connectionStatus = newStatus;
-    }
-
-    setHexColor(newColor:string){
-        this.hexColor = newColor;
     }
 
     setSensorData(newDataSet:Data[]){

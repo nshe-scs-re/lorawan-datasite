@@ -5,7 +5,7 @@ import { SensorComment } from '../../sensor_information/models/SensorComment';
 import { ProjectHistory } from '../../sensor_information/models/ProjectHistory';
 
 export class OnboardSensorRequest extends SensorInformation {
-    requestId:number;
+    requestId:number = -1; // Set to -1 as default. Set based on db request id
     devAddr:string;
     devNwsKey:string;
     devAppsKey:string;
@@ -16,10 +16,9 @@ export class OnboardSensorRequest extends SensorInformation {
     devMake:string;
     devModel:string;
   
-    constructor(devEUI:string, devName:string, deviceType:string, comments:SensorComment[], closeUpAssetId:number, contextAssetId:number, history:ProjectHistory, requestId:number, 
+    constructor(devEUI:string, devName:string, deviceType:string, comments:SensorComment[], closeUpAssetId:number, contextAssetId:number, history:ProjectHistory,
                 devAddr:string, devNwsKey:string, devAppsKey:string, appKey:string, atPin:string, otaPin:string, serialNo:string, devMake:string, devModel:string) {
         super(devEUI, devName, deviceType, comments, closeUpAssetId, contextAssetId, history);
-        this.requestId = requestId;
         this.devAddr = devAddr;
         this.devNwsKey = devNwsKey;
         this.devAppsKey = devAppsKey;
