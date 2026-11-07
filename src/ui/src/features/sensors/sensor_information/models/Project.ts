@@ -35,7 +35,7 @@ export class Project{
         return this.deploymentInfo;
     }
 
-    getDeploymentCoords():number[]{
+    getDeploymentCoords():[number, number]{
         return this.deploymentInfo.getCoordinates();
     }
 

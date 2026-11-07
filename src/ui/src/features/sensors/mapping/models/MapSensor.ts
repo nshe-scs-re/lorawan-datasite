@@ -31,7 +31,7 @@ export class MapSensor extends SensorInformation{
         return this.sensorData[index];
     }
     
-    getSensorLocation():number[]{
+    getSensorLocation():[number, number]{
         return this.project.getDeploymentCoords();
     }
 

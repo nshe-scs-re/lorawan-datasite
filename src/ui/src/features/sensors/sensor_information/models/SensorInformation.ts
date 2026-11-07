@@ -42,7 +42,7 @@ export class SensorInformation{
         return this.project;
     }
 
-    getDeviceCoords():number[]{
+    getDeviceCoords():[number, number]{
         return this.project.getDeploymentCoords();
     }
 

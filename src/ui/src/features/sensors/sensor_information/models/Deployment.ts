@@ -21,7 +21,7 @@ export class Deployment{
         return this.latitude;
     }
 
-    getCoordinates():number[]{
+    getCoordinates():[number, number]{
         return [this.longitude, this.latitude];
     }
 
