@@ -1,6 +1,8 @@
+// Author: Jacob
+
 import { SensorInformation } from "../../sensor_information/models/SensorInformation";
 import { SensorComment } from "../../sensor_information/models/SensorComment";
-import { Project } from "../../sensor_information/models/Project";
+import { ProjectHistory } from "../../sensor_information/models/ProjectHistory";
 import { Data } from "../../data/models/Data";
 
 export class MapSensor extends SensorInformation{
@@ -8,8 +10,9 @@ export class MapSensor extends SensorInformation{
     hexColor:string;
     sensorData:Data[];
 
-    constructor(devEUI: string, devName: string, deviceType: string, comments: SensorComment[], imageAssetId:number, project: Project, connectionStatus: boolean, hexColor: string, sensorData: Data[]){
-        super(devEUI, devName, deviceType, comments, imageAssetId, project);
+    constructor(devEUI: string, devName: string, deviceType: string, comments: SensorComment[], closeUpAssetId:number, contextAssetId:number, history: ProjectHistory, 
+                connectionStatus: boolean, hexColor: string, sensorData: Data[]){
+        super(devEUI, devName, deviceType, comments, closeUpAssetId, contextAssetId, history);
         this.connectionStatus = connectionStatus;
         this.hexColor = hexColor;
         this.sensorData = sensorData;
@@ -32,7 +35,7 @@ export class MapSensor extends SensorInformation{
     }
     
     getSensorLocation():[number, number]{
-        return this.project.getDeploymentCoords();
+        return this.projectHistory.getDeploymentCoords();
     }
 
     setConnectionStatus(newStatus:boolean){

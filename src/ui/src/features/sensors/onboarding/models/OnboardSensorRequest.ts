@@ -1,6 +1,8 @@
+// Author: Jacob
+
 import { SensorInformation } from '../../sensor_information/models/SensorInformation';
 import { SensorComment } from '../../sensor_information/models/SensorComment';
-import { Project } from '../../sensor_information/models/Project';
+import { ProjectHistory } from '../../sensor_information/models/ProjectHistory';
 
 export class OnboardSensorRequest extends SensorInformation {
     requestId:number;
@@ -14,9 +16,9 @@ export class OnboardSensorRequest extends SensorInformation {
     devMake:string;
     devModel:string;
   
-    constructor(devEUI:string, devName:string, deviceType:string, comments:SensorComment[], imageAssetId:number, project:Project, requestId:number, devAddr:string, devNwsKey:string, devAppsKey:string, 
-        appKey:string, atPin:string, otaPin:string, serialNo:string, devMake:string, devModel:string) {
-        super(devEUI, devName, deviceType, comments, imageAssetId, project);
+    constructor(devEUI:string, devName:string, deviceType:string, comments:SensorComment[], closeUpAssetId:number, contextAssetId:number, history:ProjectHistory, requestId:number, 
+                devAddr:string, devNwsKey:string, devAppsKey:string, appKey:string, atPin:string, otaPin:string, serialNo:string, devMake:string, devModel:string) {
+        super(devEUI, devName, deviceType, comments, closeUpAssetId, contextAssetId, history);
         this.requestId = requestId;
         this.devAddr = devAddr;
         this.devNwsKey = devNwsKey;
@@ -115,8 +117,8 @@ export class OnboardSensorRequest extends SensorInformation {
         this.devEUI, this.devName, this.deviceType, this.devAddr,
         this.devNwsKey, this.devAppsKey, this.appKey,
         this.atPin, this.otaPin, this.serialNo, this.devMake, this.devModel,
-        this.project.title, this.project.contactFName,
-        this.project.contactLName, this.project.email,
+        this.projectHistory.getProject().title, this.projectHistory.contactFName,
+        this.projectHistory.contactLName, this.projectHistory.email,
         ];
 
         // Requirements as listed by the erd for SCS-RE database
@@ -124,7 +126,7 @@ export class OnboardSensorRequest extends SensorInformation {
         if (!/^[0-9a-fA-F]{16}$/.test(this.devEUI)) return false;
         if (!/^[0-9a-fA-F]{8}$/.test(this.devAddr)) return false;
         if (![this.devNwsKey, this.devAppsKey, this.appKey].every(value => /^[0-9a-fA-F]{32}$/.test(value))) return false;
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.project.email)) return false;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.projectHistory.email)) return false;
 
         // So long as no previous checks fired, we are good
         return true;

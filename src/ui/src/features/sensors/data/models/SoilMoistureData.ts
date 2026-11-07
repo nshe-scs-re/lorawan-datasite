@@ -1,3 +1,5 @@
+// Author: Jacob
+
 import { Data } from "./Data";
 
 export class SoilMoistureData extends Data{

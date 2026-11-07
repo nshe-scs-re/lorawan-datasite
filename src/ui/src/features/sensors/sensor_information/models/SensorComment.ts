@@ -1,3 +1,5 @@
+// Author: Jacob
+
 export class SensorComment{
     postedDate:Date;
     comment:string;

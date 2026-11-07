@@ -1,3 +1,5 @@
+// Author: Jacob
+
 export abstract class Data{
     gatewayTime:Date;
 
