@@ -17,7 +17,7 @@ export class OnboardSensorRequest extends SensorInformation {
     devModel:string;
   
     constructor(devEUI:string, devName:string, deviceType:string, comments:SensorComment[], closeUpAssetId:number, contextAssetId:number, history:ProjectHistory,
-                devAddr:string, devNwsKey:string, devAppsKey:string, appKey:string, atPin:string, otaPin:string, serialNo:string, devMake:string, devModel:string) {
+                devAddr:string, devNwsKey:string, devAppsKey:string, appKey:string, atPin:string, otaPin:string, serialNo:string, devMake:string, devModel:string){
         super(devEUI, devName, deviceType, comments, closeUpAssetId, contextAssetId, history);
         this.devAddr = devAddr;
         this.devNwsKey = devNwsKey;
@@ -28,6 +28,11 @@ export class OnboardSensorRequest extends SensorInformation {
         this.serialNo = serialNo;
         this.devMake = devMake;
         this.devModel = devModel;
+
+        const validFields = this.validateFields();
+        if(!validFields){
+            throw new Error("Onboard object was instantiated with invalid fields");
+        }
     }
 
     getRequestId():number{
