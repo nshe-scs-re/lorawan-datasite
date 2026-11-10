@@ -1,5 +1,12 @@
 This repo contains all related code for a senior project.
 
+## Have application stood up via Docker
+
+Navigate to root of the project folder and run:
+`docker compose up -d --build`
+
+Having the application stood up via Docker allows for all components to run simultaneously without needing to have a terminal open for every single component.
+
 ## UI draft
 
 The `src/ui` folder contains the LoRaWAN-TCC welcome page and then empty pages inlcuding a temporary test page all in one app (rather than separate .ts files for each page). Use the navigation buttons to switch between those pages.
