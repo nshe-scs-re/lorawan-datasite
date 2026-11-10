@@ -1,0 +1,22 @@
+/*Author: Nick Campbell*/
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 82px;
+  padding: 18px 5vw;
+  border-top: 2px dashed var(--line); /* Change to solid? */
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+    .site-footer {
+        padding: 16px;
+    }
+}

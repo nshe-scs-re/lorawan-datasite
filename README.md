@@ -1,20 +1,29 @@
 This repo contains all related code for a senior project.
 
-## UI draft
-
-The `src/ui` folder contains the LoRaWAN-TCC welcome page and then empty pages inlcuding a temporary test page all in one app (rather than separate .ts files for each page). Use the navigation buttons to switch between those pages.
-
 ## View the UI locally
 
 Install Node.js v22.23.4 (which includes npm), then from the repository root run:
 `cd src/ui && npm ci && npm run dev`
 
-Open the local address printed by Vite in terminal (usually http://localhost:5173) into your
-browser to see the page. The dev server keeps running while viewing the UI, so, press `Ctrl+C` in the terminal to stop it.
+Open the local address printed by Vite in terminal (usually http://localhost:5173) into your browser to see the page. The dev server keeps running while viewing the UI, so, press `Ctrl+C` in the terminal to stop it.
+
+To run the UI in Docker instead, use `sudo docker compose up --build` from the repository root, then open http://localhost:8080. Stop the containers with `Ctrl+C`.
+
+## Run UI tests
+
+The UI unit tests use Vitest. From the repository root, run all UI tests with:
+`cd src/ui && npx vitest run`
+
+To run a single page's tests, pass its test file path. For example:
+`npx vitest run src/pages/WelcomePage.test.ts`
+or
+`npx vitest run src/pages/MapPage.test.ts`
+
+To keep Vitest running and rerun tests as files change, use `npx vitest`.
 
 ## Web asset database tool
 
-To make the addition of website assets easier when adding text, a javascript tool has been created. To run the rool, cd into the `db` folder and run the following: `npm db:asset:tool`
+To make the addition of website assets easier when adding text, a javascript tool has been created. To run the rool, cd into the `db` folder and run the following: `npm run db:asset:tool`
 
 This will open a menu with the following options:
 1. Add new asset

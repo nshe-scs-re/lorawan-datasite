@@ -29,7 +29,7 @@ export class AirTempData extends Data{
     }
 
     setSensorInt(newSensorInt:number){
-        this.sensorInt = this.sensorInt;
+        this.sensorInt = newSensorInt;
     }
 
     setTempC(newTempC:number){

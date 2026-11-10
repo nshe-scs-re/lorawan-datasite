@@ -1,6 +1,5 @@
 // Author: Jacob
 
-import { Project } from "./Project";
 import { ProjectHistory } from "./ProjectHistory";
 import { SensorComment } from "./SensorComment"
 
