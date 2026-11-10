@@ -1,13 +1,11 @@
 This repo contains all related code for a senior project.
 
-## View the UI locally
+## Have application stood up via Docker
 
-Install Node.js v22.23.4 (which includes npm), then from the repository root run:
-`cd src/ui && npm ci && npm run dev`
+Navigate to root of the project folder and run:
+`docker compose up -d --build`
 
-Open the local address printed by Vite in terminal (usually http://localhost:5173) into your browser to see the page. The dev server keeps running while viewing the UI, so, press `Ctrl+C` in the terminal to stop it.
-
-To run the UI in Docker instead, use `sudo docker compose up --build` from the repository root, then open http://localhost:8080. Stop the containers with `Ctrl+C`.
+Having the application stood up via Docker allows for all components to run simultaneously without needing to have a terminal open for every single component.
 
 ## Run UI tests
 
