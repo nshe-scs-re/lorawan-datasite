@@ -5,7 +5,10 @@ This repo contains all related code for a senior project.
 Navigate to root of the project folder and run:
 `docker compose up -d --build`
 
-Having the application stood up via Docker allows for all components to run simultaneously without needing to have a terminal open for every single component.
+Having the application stood up via Docker allows for all components to run simultaneously without needing to have a terminal open for every single component. Application should be available via https://localhost:8080 after running the command. Site hosting to be tackled in the Spring.
+
+If you run into a 502 Bad Gateway error, Nginx may be holding onto stale IP address. To fix, restart the nginx container:
+`docker compose restart nginx`
 
 ## Run UI tests
 
