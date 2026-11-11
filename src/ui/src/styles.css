@@ -1,0 +1,155 @@
+:root {
+  font-family: "Courier New", monospace;
+  color: #4B5B5C;
+  background: #FAF6E6;
+  --paper: #FAF6E6;
+  --ink: #4B5B5C;
+  --green: #09D6A0;
+  --yellow: #FFD166;
+  --red: #ED5437;
+  --line: #4B5B5C;
+}
+
+* { box-sizing: border-box; }
+body { min-width: 320px; margin: 0; }
+button { font: inherit; color: inherit; }
+button:not(:disabled) { cursor: pointer; }
+
+.page-buttons button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.page-buttons button:disabled { opacity: 1; }
+.page-buttons small { color: #727b7a; font-size: 10px; }
+
+main { max-width: 1050px; margin: 0 auto; padding: 36px 5vw 70px; }
+.welcome-page, .device-map-page, .about-page, .test-page { min-height: 570px; border: 2px dashed var(--line); }
+.page-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 15px;
+  border-bottom: 1px dashed var(--line);
+  background: rgba(255, 209, 102, .22);
+  font-size: 11px;
+}
+.welcome { max-width: 690px; padding: clamp(24px, 6vw, 65px); }
+.eyebrow { margin: 0; color: #687372; font-size: 11px; }
+h1 { margin: 14px 0; color: var(--ink); font-size: clamp(36px, 8vw, 72px); letter-spacing: -.06em; }
+.intro { margin: 0; font-size: clamp(15px, 2.5vw, 20px); }
+.note { max-width: 475px; margin: 28px 0 0; padding: 12px; border-left: 4px solid var(--green); background: rgba(9, 214, 160, .12); font-size: 13px; line-height: 1.5; }
+.section-placeholders { margin: 4px clamp(24px, 6vw, 65px) 0; padding-top: 18px; border-top: 1px dashed var(--line); }
+.section-placeholders > p { margin: 0 0 12px; color: #687372; font-size: 10px; }
+.page-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.page-buttons button { background: rgba(250, 246, 230, .7); }
+.page-buttons button:nth-child(2n) { border-style: dashed; }
+.page-buttons button span { color: var(--red); font-size: 10px; }
+#sensor-map { width: 100%; height: 500px; }
+.map-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; }
+.map-heading h1 { margin: 0; font-size: clamp(24px, 4vw, 36px); letter-spacing: -.04em; }
+.map-heading p { display: flex; align-items: center; gap: 8px; margin: 0; color: #687372; font-size: 11px; }
+.offline-map-key { display: inline-block; flex: none; width: 12px; height: 12px; border: 2px solid #fff; border-radius: 50%; background: #808080; box-shadow: 0 0 0 1px var(--line); }
+.sensor-popup h2 { margin: 0 0 8px; font-size: 16px; }
+.sensor-popup h3 { margin: 12px 0 4px; font-size: 13px; }
+.sensor-popup p { margin: 5px 0; }
+.sensor-popup ul { margin: 5px 0; padding-left: 20px; }
+.sensor-popup li + li { margin-top: 6px; }
+.sensor-popup time { color: #687372; font-size: 11px; }
+
+@media (max-width: 760px) {
+  main { padding: 24px 14px 48px; }
+  .welcome-page, .test-page, .device-map-page, .about-page { min-height: 0; }
+  .page-label { font-size: 9px; }
+  .welcome { padding: 28px 20px; }
+  .section-placeholders { margin-right: 20px; margin-left: 20px; }
+  .page-buttons { display: grid; grid-template-columns: 1fr 1fr; }
+  .page-buttons button { justify-content: flex-start; flex-wrap: wrap; }
+  .map-heading { align-items: flex-start; flex-direction: column; }
+}
+
+
+/* Asset display on the Test page */
+.asset-container {
+    margin-top: 2rem;
+    max-width: 750px;
+    padding: 1.5rem;
+
+    border: 1px solid var(--border-color, #526363);
+    border-radius: 8px;
+
+    background: #fffdf5;
+}
+
+/* Title and record badge */
+.asset-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    margin-bottom: 1.5rem;
+}
+
+.asset-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.asset-badge {
+    padding: 0.35rem 0.65rem;
+
+    border: 1px solid #526363;
+    border-radius: 4px;
+
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+}
+
+/* Label and textarea */
+.asset-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.asset-field label {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.asset-field textarea {
+    display: block;
+
+    width: 100%;
+    min-height: 160px;
+    box-sizing: border-box;
+
+    padding: 1rem;
+
+    border: 1px solid #526363;
+    border-radius: 5px;
+
+    background: #faf6e6;
+    color: #526363;
+
+    font: inherit;
+    line-height: 1.6;
+
+    resize: vertical;
+}
+
+/* Loading / success message */
+.asset-status {
+    margin: 0.75rem 0 0;
+
+    font-size: 0.85rem;
+    opacity: 0.75;
+}
