@@ -10,14 +10,19 @@ Having the application stood up via Docker allows for all components to run simu
 ## Run UI tests
 
 The UI unit tests use Vitest. From the repository root, run all UI tests with:
-`cd src/ui && npx vitest run`
+`cd src/ui && npm run test`
 
 To run a single page's tests, pass its test file path. For example:
-`npx vitest run src/pages/WelcomePage.test.ts`
+`npm run test -- WelcomePage`
 or
-`npx vitest run src/pages/MapPage.test.ts`
+`npm run test -- MapPage`
 
-To keep Vitest running and rerun tests as files change, use `npx vitest`.
+To test a sensor class run the test with the class tagged. For example:
+`npm run test -- MapSensor`
+or
+`npm run test -- OnboardSensorRequest`
+
+To keep Vitest running and rerun tests as files change, use `npm test:watch`.
 
 ## Web asset database tool
 

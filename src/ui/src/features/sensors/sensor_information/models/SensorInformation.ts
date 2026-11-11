@@ -1,5 +1,3 @@
-// Author: Jacob
-
 import { ProjectHistory } from "./ProjectHistory";
 import { SensorComment } from "./SensorComment"
 

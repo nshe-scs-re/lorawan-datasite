@@ -1,5 +1,3 @@
-// Author: Jacob
-
 export abstract class Data{
     gatewayTime:Date;
     hexColor:string = "#808080" //grey by default, overridden by children

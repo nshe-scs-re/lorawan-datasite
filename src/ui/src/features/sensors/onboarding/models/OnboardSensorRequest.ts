@@ -1,5 +1,3 @@
-// Author: Jacob
-
 import { SensorInformation } from '../../sensor_information/models/SensorInformation';
 import { SensorComment } from '../../sensor_information/models/SensorComment';
 import { ProjectHistory } from '../../sensor_information/models/ProjectHistory';
@@ -29,6 +27,7 @@ export class OnboardSensorRequest extends SensorInformation {
         this.devMake = devMake;
         this.devModel = devModel;
 
+        // validate fields upon constructing
         const validFields = this.validateFields();
         if(!validFields){
             throw new Error("Onboard object was instantiated with invalid fields");

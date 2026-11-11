@@ -1,5 +1,3 @@
-// Author: Jacob
-
 export class Project{
     title:string;
 

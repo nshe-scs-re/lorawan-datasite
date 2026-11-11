@@ -1,5 +1,3 @@
-// Author: Jacob
-
 import { Project } from "./Project";
 import { Deployment } from "./Deployment";
 

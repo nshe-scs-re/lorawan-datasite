@@ -1,15 +1,12 @@
-// Author: Jacob Campau
-
 import {test, expect} from "vitest";
-
-import { MapSensor } from "../mapping/models/MapSensor";
-import { Project } from "../sensor_information/models/Project";
-import { Deployment } from "../sensor_information/models/Deployment";
-import { SoilMoistureData } from "../data/models/SoilMoistureData";
-import { AirTempData } from "../data/models/AirTempData";
-import { TiltData } from "../data/models/TiltData";
-import { ProjectHistory } from "../sensor_information/models/ProjectHistory";
-import { SensorComment } from "../sensor_information/models/SensorComment";
+import { MapSensor } from "./MapSensor";
+import { Project } from "../../sensor_information/models/Project";
+import { Deployment } from "../../sensor_information/models/Deployment";
+import { SoilMoistureData } from "../../data/models/SoilMoistureData";
+import { AirTempData } from "../../data/models/AirTempData";
+import { TiltData } from "../../data/models/TiltData";
+import { ProjectHistory } from "../../sensor_information/models/ProjectHistory";
+import { SensorComment } from "../../sensor_information/models/SensorComment";
 
 const mockProject1 = new Project("Jacob's Home Test");
 const mockProject2 = new Project("Gotta be a second project name here fs");

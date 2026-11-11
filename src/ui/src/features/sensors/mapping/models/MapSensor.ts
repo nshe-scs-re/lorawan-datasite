@@ -1,5 +1,3 @@
-// Author: Jacob
-
 import { SensorInformation } from "../../sensor_information/models/SensorInformation";
 import { SensorComment } from "../../sensor_information/models/SensorComment";
 import { ProjectHistory } from "../../sensor_information/models/ProjectHistory";
@@ -46,10 +44,6 @@ export class MapSensor extends SensorInformation{
     
     getSensorLocation():[number, number]{
         return this.projectHistory.getDeploymentCoords();
-    }
-
-    setConnectionStatus(newStatus:boolean){
-        this.connectionStatus = newStatus;
     }
 
     setSensorData(newDataSet:Data[]){

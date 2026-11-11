@@ -1,5 +1,3 @@
-// Author: Jacob
-
 import { Data } from "./Data";
 
 export class AirTempData extends Data{

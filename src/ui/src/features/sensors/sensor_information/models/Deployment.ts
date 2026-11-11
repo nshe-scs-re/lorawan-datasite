@@ -1,5 +1,3 @@
-// Author: Jacob
-
 export class Deployment{
     deploymentDate:Date
     longitude:number

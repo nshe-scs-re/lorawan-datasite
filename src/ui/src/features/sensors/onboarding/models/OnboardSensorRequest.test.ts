@@ -1,12 +1,10 @@
-// Author: Jacob Campau
-
 import {test, expect} from "vitest";
 
-import { OnboardSensorRequest } from "../onboarding/models/OnboardSensorRequest";
-import { SensorComment } from "../sensor_information/models/SensorComment";
-import { ProjectHistory } from "../sensor_information/models/ProjectHistory";
-import { Project } from "../sensor_information/models/Project";
-import { Deployment } from "../sensor_information/models/Deployment";
+import { OnboardSensorRequest } from "./OnboardSensorRequest";
+import { SensorComment } from "../../sensor_information/models/SensorComment";
+import { ProjectHistory } from "../../sensor_information/models/ProjectHistory";
+import { Project } from "../../sensor_information/models/Project";
+import { Deployment } from "../../sensor_information/models/Deployment";
 
 const mockProject1 = new Project("Jacob's Home Test");
 const mockProject2 = new Project("Gotta be a second project name here fs");

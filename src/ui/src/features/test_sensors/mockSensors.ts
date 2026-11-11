@@ -1,5 +1,3 @@
-// Author: Jacob
-
 import { MapSensor } from "../sensors/mapping/models/MapSensor";
 import { Project } from "../sensors/sensor_information/models/Project";
 import { Deployment } from "../sensors/sensor_information/models/Deployment";
@@ -13,6 +11,7 @@ const mockProject1 = new Project("Jacob's Home Test");
 const mockProject2 = new Project("Gotta be a second project name here fs");
 const defaultContactInfo = {contactFName: "Jacobo", contactLName: "comp", email: "email@getanemail.com"};
 
+// working sensor
 const sensor1 = new MapSensor(
     "0000000000000001",
     "Soil Sensor 1",
@@ -43,6 +42,7 @@ const sensor1 = new MapSensor(
     )]
 );
 
+// offline sensor
 const sensor2 = new MapSensor(
     "0000000000000002",
     "Soil Sensor 2",
@@ -65,14 +65,16 @@ const sensor2 = new MapSensor(
         )
     ),
     [new SoilMoistureData(
+        // sets date to 3 days ago
         new Date(new Date().getTime() - 72*60*60*1000),
         1,
         17.2,
         32.4,
         146
     )]
-);
+)
 
+// working sensor
 const sensor3 = new MapSensor(
     "0000000000000003",
     "Air Temperature 1",
@@ -101,6 +103,7 @@ const sensor3 = new MapSensor(
     )]
 );
 
+// working sensor
 const sensor4 = new MapSensor(
     "0000000000000004",
     "Air Temperature 2",
@@ -129,6 +132,7 @@ const sensor4 = new MapSensor(
     )]
 );
 
+// offline sensor
 const sensor5 = new MapSensor(
     "0000000000000005",
     "Tilt Sensor 1",
@@ -151,6 +155,7 @@ const sensor5 = new MapSensor(
         )
     ),
     [new TiltData(
+        // sets date to 3 days ago
         new Date(new Date().getTime() - 72*60*60*1000),
         2.3,
         -1.5,
