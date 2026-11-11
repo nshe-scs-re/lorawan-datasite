@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 import "./footer.css";
 
 export function renderFooter(): string {

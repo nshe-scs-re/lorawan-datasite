@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 import * as L from "leaflet";
 import { mockSensors } from "../features/test_sensors/mockSensors";
 import "leaflet/dist/leaflet.css";

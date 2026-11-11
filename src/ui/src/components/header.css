@@ -1,5 +1,3 @@
-/*Author: Nick Campbell*/
-
 :root {
   font-family: "Courier New", monospace;
   color: #4B5B5C;
@@ -24,7 +22,7 @@ button:not(:disabled) { cursor: pointer; }
   gap: 18px;
   min-height: 82px;
   padding: 14px 5vw;
-  border-bottom: 2px dashed var(--line);
+  border-bottom: 2px solid var(--line);
 }
 
 .brand-block { display: flex; align-items: center; gap: 12px; }

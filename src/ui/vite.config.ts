@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 import { defineConfig } from "vite";
 
 export default defineConfig({

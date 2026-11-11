@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 import "./styles.css";
 import { renderHeader } from "./components/header.ts";
 import { destroyMap, initializeMap, renderMapPage } from "./pages/MapPage.ts";
@@ -21,7 +19,6 @@ const state = {
   selectedSensorId: null as number | null,
 };
 
-//Edit: Jacob Campau
 interface Asset {
     asset_id: number;
     title: string;
@@ -30,7 +27,6 @@ interface Asset {
     file_type: string;
 }
 
-//Edit: Jacob Campau
 async function loadAsset(): Promise<void> {
     const titleElement =
         root.querySelector<HTMLHeadingElement>("#asset-title");

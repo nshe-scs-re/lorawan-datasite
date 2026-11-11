@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 export function renderAboutPage(isActive: boolean): string {
     return `
     <section class="about-page" aria-labelledby="about-title" ${isActive ? "" : "hidden"}>

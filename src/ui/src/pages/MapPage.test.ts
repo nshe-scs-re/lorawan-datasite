@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 import { expect, test, vi } from "vitest";
 
 vi.mock("leaflet", () => ({

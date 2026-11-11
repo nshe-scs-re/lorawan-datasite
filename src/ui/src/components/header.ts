@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 import "./header.css";
 
 export function renderHeader(

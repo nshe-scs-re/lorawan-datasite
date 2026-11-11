@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 export function renderWelcomePage(
     pages: string[],
     isActive: boolean,

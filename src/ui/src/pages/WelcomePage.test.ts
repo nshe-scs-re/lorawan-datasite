@@ -1,5 +1,3 @@
-//Author: Nick Campbell
-
 import { expect, test } from "vitest";
 import { renderWelcomePage } from "./WelcomePage.ts";
 
