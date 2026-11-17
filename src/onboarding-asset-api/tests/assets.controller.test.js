@@ -1,4 +1,3 @@
-
 // mock repository to isolate controller
 jest.mock("../src/repositories/assets.repository");
 
@@ -11,7 +10,7 @@ describe("Asset Controller Unit Tests", () => {
     let res;
 
     beforeEach(() => {
-        // mock objects
+        // mock request and response objects
         req = {
             params: {}
         };
@@ -67,9 +66,9 @@ describe("Asset Controller Unit Tests", () => {
         });
     });
 
-    describe("getAssetById()", () => {
+    describe("getAssetByTitle()", () => {
 
-        test("should retrieve a specific asset", () => {
+        test("should retrieve a specific asset by title", () => {
             const mockAsset = {
                 asset_id: 1,
                 title: "Test Asset",
@@ -78,24 +77,24 @@ describe("Asset Controller Unit Tests", () => {
                 file_type: "image/png"
             };
 
-            req.params.id = "1";
+            req.params.title = "Test Asset";
 
-            assetRepository.getAssetById.mockReturnValue(mockAsset);
+            assetRepository.getAssetByTitle.mockReturnValue(mockAsset);
 
-            assetController.getAssetById(req, res);
+            assetController.getAssetByTitle(req, res);
 
-            expect(assetRepository.getAssetById).toHaveBeenCalledWith("1");
+            expect(assetRepository.getAssetByTitle).toHaveBeenCalledWith("Test Asset");
             expect(res.json).toHaveBeenCalledWith(mockAsset);
         });
 
         test("should return 404 if asset does not exist", () => {
-            req.params.id = "999";
+            req.params.title = "Nonexistent Asset";
 
-            assetRepository.getAssetById.mockReturnValue(undefined);
+            assetRepository.getAssetByTitle.mockReturnValue(undefined);
 
-            assetController.getAssetById(req, res);
+            assetController.getAssetByTitle(req, res);
 
-            expect(assetRepository.getAssetById).toHaveBeenCalledWith("999");
+            expect(assetRepository.getAssetByTitle).toHaveBeenCalledWith("Nonexistent Asset");
             expect(res.status).toHaveBeenCalledWith(404);
             expect(res.json).toHaveBeenCalledWith({
                 error: "Asset not found"
@@ -107,13 +106,13 @@ describe("Asset Controller Unit Tests", () => {
                 .spyOn(console, "error")
                 .mockImplementation(() => {});
 
-            req.params.id = "1";
+            req.params.title = "Test Asset";
 
-            assetRepository.getAssetById.mockImplementation(() => {
+            assetRepository.getAssetByTitle.mockImplementation(() => {
                 throw new Error("Database error");
             });
 
-            assetController.getAssetById(req, res);
+            assetController.getAssetByTitle(req, res);
 
             expect(res.status).toHaveBeenCalledWith(500);
             expect(res.json).toHaveBeenCalledWith({

@@ -7,6 +7,6 @@ const assetController = require("../controllers/assets.controller");
 router.get("/", assetController.getAllAssets);
 
 // Retrieve a specific website asset
-router.get("/:id", assetController.getAssetById);
+router.get("/:title", assetController.getAssetByTitle);
 
 module.exports = router;

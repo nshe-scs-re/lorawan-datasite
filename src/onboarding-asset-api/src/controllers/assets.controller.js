@@ -15,9 +15,11 @@ function getAllAssets(req, res) {
     }
 }
 
-function getAssetById(req, res) {
+function getAssetByTitle(req, res) {
     try {
-        const asset = assetRepository.getAssetById(req.params.id);
+        const { title } = req.params;
+
+        const asset = assetRepository.getAssetByTitle(title);
 
         if (!asset) {
             return res.status(404).json({
@@ -28,8 +30,7 @@ function getAssetById(req, res) {
         res.json(asset);
 
     } catch (error) {
-        console.error("Failed to retrieve asset:", error);
-
+        console.error("Error retrieving asset:", error);
         res.status(500).json({
             error: "Failed to retrieve asset"
         });
@@ -38,5 +39,5 @@ function getAssetById(req, res) {
 
 module.exports = {
     getAllAssets,
-    getAssetById
+    getAssetByTitle
 };

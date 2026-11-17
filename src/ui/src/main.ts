@@ -42,7 +42,7 @@ async function loadAsset(): Promise<void> {
     }
 
     try {
-        const response = await fetch("/api/assets/1");
+        const response = await fetch("/api/assets/Hello World!");
 
         if (!response.ok) {
             throw new Error(`Request failed: ${response.status}`);

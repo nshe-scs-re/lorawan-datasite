@@ -16,7 +16,7 @@ function getAllAssets() {
 }
 
 // Retrieve a specific website asset
-function getAssetById(title) {
+function getAssetByTitle(title) {
     return db.prepare(`
         SELECT
             asset_id,
@@ -27,11 +27,11 @@ function getAssetById(title) {
             created_at,
             updated_at
         FROM asset
-        WHERE asset_id = ?
-    `).get(id);
+        WHERE title = ?
+    `).get(title);
 }
 
 module.exports = {
     getAllAssets,
-    getAssetById
+    getAssetByTitle
 };
