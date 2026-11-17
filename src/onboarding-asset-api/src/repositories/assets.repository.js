@@ -16,7 +16,7 @@ function getAllAssets() {
 }
 
 // Retrieve a specific website asset
-function getAssetById(id) {
+function getAssetById(title) {
     return db.prepare(`
         SELECT
             asset_id,
