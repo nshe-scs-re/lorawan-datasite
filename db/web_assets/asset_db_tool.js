@@ -184,9 +184,17 @@ function viewAllAssetIds(db){
     console.log("\n=== Existing Assets ===\n");
 
     const assets = db.prepare(`
-        SELECT asset_id, title, file_path
-        FROM asset
-        ORDER BY asset_id
+        SELECT a.asset_id, a.title, a.file_path,
+            (SELECT GROUP_CONCAT(c.name, ', ')
+             FROM asset_category ac
+             JOIN category c ON c.category_id = ac.category_id
+             WHERE ac.asset_id = a.asset_id) AS categories,
+            (SELECT GROUP_CONCAT(t.name, ', ')
+             FROM asset_tag at
+             JOIN tag t ON t.tag_id = at.tag_id
+             WHERE at.asset_id = a.asset_id) AS tags
+        FROM asset a
+        ORDER BY a.asset_id
     `).all();
 
     if (assets.length === 0) {
@@ -326,17 +334,26 @@ async function editAsset(db, assetId){
 
 // View the whole asset information via the ID
 function viewAssetDetails(db, assetId){
+    // Subqueries keep categories and tags from multiplying each other's rows
     const asset = db.prepare(`
-        SELECT *
-        FROM asset
-        WHERE asset_id = ?
+        SELECT a.*,
+            (SELECT GROUP_CONCAT(c.name, ', ')
+             FROM asset_category ac
+             JOIN category c ON c.category_id = ac.category_id
+             WHERE ac.asset_id = a.asset_id) AS categories,
+            (SELECT GROUP_CONCAT(t.name, ', ')
+             FROM asset_tag at
+             JOIN tag t ON t.tag_id = at.tag_id
+             WHERE at.asset_id = a.asset_id) AS tags
+        FROM asset a
+        WHERE a.asset_id = ?
     `).get(assetId);
 
     if (!asset) {
         console.log("Asset not found.");
         return;
     }
-    
+
     console.log(`\n=== Viewing Asset ${assetId} ===\n`);
     console.table([asset]);
 }

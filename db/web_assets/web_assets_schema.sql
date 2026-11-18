@@ -42,6 +42,10 @@ CREATE TABLE IF NOT EXISTS asset_tag (
     FOREIGN KEY (tag_id) REFERENCES tag(tag_id) ON DELETE CASCADE
 );
 
+-- Enforces unique asset titles (case-insensitive) so assets can be looked up by title.
+-- Kept as an index instead of a column constraint so it also applies to existing databases.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_asset_title ON asset(title COLLATE NOCASE);
+
 -- These indicies support filtering by category_id and tag_id.
 CREATE INDEX IF NOT EXISTS idx_asset_category_category_id ON asset_category(category_id);
 CREATE INDEX IF NOT EXISTS idx_asset_tag_tag_id ON asset_tag(tag_id);
