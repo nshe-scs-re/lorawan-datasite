@@ -6,7 +6,7 @@ PRAGMA foreign_keys = ON;
 -- Asset data for website.
 CREATE TABLE IF NOT EXISTS asset (
     asset_id INTEGER PRIMARY KEY,
-    title TEXT NOT NULL CHECK (length(trim(title)) > 0),
+    title TEXT NOT NULL UNIQUE CHECK (length(trim(title)) > 0),
     description TEXT,
     file_path TEXT NOT NULL UNIQUE CHECK (length(trim(file_path)) > 0),
     file_type TEXT NOT NULL CHECK (length(trim(file_type)) > 0),
@@ -41,10 +41,6 @@ CREATE TABLE IF NOT EXISTS asset_tag (
     FOREIGN KEY (asset_id) REFERENCES asset(asset_id) ON DELETE CASCADE,
     FOREIGN KEY (tag_id) REFERENCES tag(tag_id) ON DELETE CASCADE
 );
-
--- Enforces unique asset titles (case-insensitive) so assets can be looked up by title.
--- Kept as an index instead of a column constraint so it also applies to existing databases.
-CREATE UNIQUE INDEX IF NOT EXISTS idx_asset_title ON asset(title COLLATE NOCASE);
 
 -- These indicies support filtering by category_id and tag_id.
 CREATE INDEX IF NOT EXISTS idx_asset_category_category_id ON asset_category(category_id);

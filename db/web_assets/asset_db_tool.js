@@ -8,6 +8,19 @@ const path = require("node:path");
 
 const dbPath = path.join(__dirname, "web_assets.db");
 
+// Allowed categories; users pick from this list instead of typing names
+const CATEGORY_OPTIONS = [
+    "home",
+    "map",
+    "onboarding",
+    "data",
+    "technology",
+    "about",
+    "api",
+    "global",
+    "test"
+];
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -94,16 +107,25 @@ async function addNewAsset(db){
     const filePath = (await rl.question("File path: ")).trim();
     const fileType = (await rl.question("File type: ")).trim();
 
-    const categoriesInput = await rl.question(
-        "Categories (comma-separated): "
-    );
+    // Choose a single category from the allowed list
+    console.log("\nCategories:");
+    CATEGORY_OPTIONS.forEach((name, index) => console.log(`  ${index + 1}. ${name}`));
+
+    let category;
+    while (!category) {
+        const selection = Number((await rl.question("Select a category by number: ")).trim());
+        category = CATEGORY_OPTIONS[selection - 1];
+        if (!Number.isInteger(selection) || !category) {
+            category = undefined;
+            console.log(`Please enter a number from 1 to ${CATEGORY_OPTIONS.length}.`);
+        }
+    }
 
     const tagsInput = await rl.question(
         "Tags (comma-separated): "
     );
 
-    // Split categories and tags by commas
-    const categories = categoriesInput.split(",").map(value => value.trim()).filter(Boolean);
+    // Split tags by commas
     const tags = tagsInput.split(",").map(value => value.trim()).filter(Boolean);
 
     // Validate required fields
@@ -158,11 +180,9 @@ async function addNewAsset(db){
         );
         const assetId = result.lastInsertRowid;
 
-        for (const category of categories) {
-            insertCategory.run(category);
-            const categoryId = findCategory.get(category).category_id;
-            linkCategory.run(assetId, categoryId);
-        }
+        insertCategory.run(category);
+        const categoryId = findCategory.get(category).category_id;
+        linkCategory.run(assetId, categoryId);
 
         for (const tag of tags) {
             insertTag.run(tag);
@@ -235,16 +255,31 @@ async function editAsset(db, assetId){
     const newFilePath = filePath || asset.file_path;
     const newFileType = fileType || asset.file_type;
 
-    const categoriesInput = await rl.question(
-        "Categories (comma-separated): "
-    );
+    // Choose a single category from the allowed list (blank keeps the current one)
+    console.log("\nCategories:");
+    CATEGORY_OPTIONS.forEach((name, index) => console.log(`  ${index + 1}. ${name}`));
+
+    let newCategory;
+    while (true) {
+        const input = (await rl.question("Select a category by number: ")).trim();
+        if (!input) {
+            break;
+        }
+
+        const selection = Number(input);
+        if (Number.isInteger(selection) && CATEGORY_OPTIONS[selection - 1]) {
+            newCategory = CATEGORY_OPTIONS[selection - 1];
+            break;
+        }
+
+        console.log(`Please enter a number from 1 to ${CATEGORY_OPTIONS.length}, or leave blank.`);
+    }
 
     const tagsInput = await rl.question(
         "Tags (comma-separated): "
     );
 
-    // Split new categories and tags by commas
-    const newCategories = categoriesInput.split(",").map(value => value.trim()).filter(Boolean);
+    // Split new tags by commas
     const newTags = tagsInput.split(",").map(value => value.trim()).filter(Boolean);
 
     // Prepare SQL statements
@@ -307,13 +342,11 @@ async function editAsset(db, assetId){
             assetId
         );
 
-        if(newCategories.length > 0){
+        if(newCategory){
             deleteCategories.run(assetId);
-            for (const category of newCategories) {
-                insertCategory.run(category);
-                const categoryId = findCategory.get(category).category_id;
-                linkCategory.run(assetId, categoryId);
-            }
+            insertCategory.run(newCategory);
+            const categoryId = findCategory.get(newCategory).category_id;
+            linkCategory.run(assetId, categoryId);
         }
 
         if(newTags.length > 0){

@@ -28,7 +28,7 @@ or
 To keep Vitest running and rerun tests as files change, use `npm test:watch`.
 
 ## Web asset database tool
-
+### How to run
 To make the addition of website assets easier when adding text, a javascript tool has been created. To run the rool, cd into the `db` folder and run the following: `npm run db:asset:tool`
 
 This will open a menu with the following options:
@@ -51,3 +51,24 @@ This will open a menu with the following options:
 5. Exit
         
     This option exits the tool and returns to the CLI. Additionally, you can use ctrl+c to close the tool at any time. If the process is inturupted mid asset edit or in the middle of adding a new asset, no changes or additions will be made.
+
+### Category and Tag information
+
+All assets will have a category and tag. For this project, categories will associate with the pages while tags associate to the component the asset is used for. The list of categories is as follows:
+
+- home
+- map
+- onboarding
+- data
+- technology
+- about
+- api
+- global (This category is used for all things that are used globally around the project. For example, the project title and logo.)
+- test
+
+As stated previously, tags refer to the ui component the asset is used for. For example, all things used in the global header should have a "header" tag and be in the "global" category. Or if a the data page has an "information" component that has a title asset and data legend asset, the resulting assets would be as follows:
+
+- `asset title: information_title, category: data, tag: information`
+- `asset title: information_data_legend, category: data, tag: information`
+
+These should be read as "the information_title and informaiton_data_legend assets are on the data page and in the information component"
