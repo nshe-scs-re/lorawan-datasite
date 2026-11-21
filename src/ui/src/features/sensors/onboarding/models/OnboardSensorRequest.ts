@@ -134,4 +134,41 @@ export class OnboardSensorRequest extends SensorInformation {
         // So long as no previous checks fired, we are good
         return true;
     }
+
+    // Serializes the full onboard request into a JSON string for the Go API layer.
+    // Dates are sent as RFC 3339 / ISO 8601 strings
+    convertToJson():string{
+        const history = this.projectHistory;
+        const deployment = history.getDeploymentInfo();
+
+        const payload = {
+            contactFName: history.getContactFName(),
+            contactLName: history.getContactLName(),
+            email: history.getEmail(),
+            devEUI: this.devEUI,
+            devAddr: this.devAddr,
+            devNwsKey: this.devNwsKey,
+            devAppsKey: this.devAppsKey,
+            appKey: this.appKey,
+            atPin: this.atPin,
+            otaPin: this.otaPin,
+            serialNo: this.serialNo,
+            devName: this.devName,
+            deviceType: this.deviceType,
+            devMake: this.devMake,
+            devModel: this.devModel,
+            projectAssociation: history.getProject().getTitle(),
+            longitude: deployment.getLongitude(),
+            latitude: deployment.getLatitude(),
+            imageCloseUpAssetId: this.imageCloseUpAssetId,
+            imageContextAssetId: this.imageContextAssetId,
+            deploymentDate: deployment.getDeploymentDate().toISOString(),
+            comments: this.comments.map(comment => ({
+                postedDate: comment.getPostedDate().toISOString(),
+                comment: comment.getComment(),
+            })),
+        };
+
+        return JSON.stringify(payload);
+    }
 }

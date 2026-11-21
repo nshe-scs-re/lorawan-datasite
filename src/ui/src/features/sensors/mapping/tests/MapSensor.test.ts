@@ -1,5 +1,5 @@
 import {test, expect} from "vitest";
-import { MapSensor } from "./MapSensor";
+import { MapSensor } from "../models/MapSensor";
 import { Project } from "../../sensor_information/models/Project";
 import { Deployment } from "../../sensor_information/models/Deployment";
 import { SoilMoistureData } from "../../data/models/SoilMoistureData";

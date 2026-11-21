@@ -1,0 +1,33 @@
+{
+  "contactFName": "Nick",
+  "contactLName": "Campbell",
+  "email": "email@getanemail.com",
+  "devEUI": "1111111111111111",
+  "devAddr": "12345678",
+  "devNwsKey": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "devAppsKey": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+  "appKey": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+  "atPin": "111111",
+  "otaPin": "222222",
+  "serialNo": "SN12345678",
+  "devName": "Soil Moisture Test Sensor",
+  "deviceType": "soil_moisture",
+  "devMake": "Dragino",
+  "devModel": "LSE01",
+  "projectAssociation": "Jacob's Home Test",
+  "longitude": -119.8138,
+  "latitude": 39.5296,
+  "imageCloseUpAssetId": 3,
+  "imageContextAssetId": 4,
+  "deploymentDate": "2026-01-10T08:00:00.000Z",
+  "comments": [
+    {
+      "postedDate": "2026-01-15T10:30:00.000Z",
+      "comment": "Onboarding comment for testing"
+    },
+    {
+      "postedDate": "2026-01-16T14:00:00.000Z",
+      "comment": "Second comment to show the array shape"
+    }
+  ]
+}

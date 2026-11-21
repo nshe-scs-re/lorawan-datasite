@@ -16,14 +16,14 @@ The UI unit tests use Vitest. From the repository root, run all UI tests with:
 `cd src/ui && npm run test`
 
 To run a single page's tests, tag the page you want to test. For example:
-`npm run test --WelcomePage`
+`npm run test -- WelcomePage`
 or
-`npm run test --MapPage`
+`npm run test -- MapPage`
 
 To test a single sensor class, tag the class you want to test. For example:
-`npm run test --MapSensor`
+`npm run test -- MapSensor`
 or
-`npm run test --OnboardSensorRequest`
+`npm run test -- OnboardSensorRequest`
 
 To keep Vitest running and rerun tests as files change, use `npm test:watch`.
 
@@ -72,3 +72,6 @@ As stated previously, tags refer to the ui component the asset is used for. For 
 - `asset title: information_data_legend, category: data, tag: information`
 
 These should be read as "the information_title and informaiton_data_legend assets are on the data page and in the information component"
+
+## Sensor Image Defaults
+There currently exists two images that exists as 'defaults' for the context and close up image on a sensor. The asset ids related to these are 3 for close up and 4 for context. They are stored in `src/ui/src/features/features/sensors/test_sensors/test_sensor_images`. If a sensor is loaded and the images cannot be pulled without error, these images should populate the needed image. 
