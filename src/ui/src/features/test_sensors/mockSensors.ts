@@ -7,6 +7,15 @@ import { TiltData } from "../sensors/data/models/TiltData";
 import { ProjectHistory } from "../sensors/sensor_information/models/ProjectHistory";
 import { SensorComment } from "../sensors/sensor_information/models/SensorComment";
 
+/*
+ * MOCK DATA SWITCH
+ * While the science-data-api doesn't exist, SensorService and DataService
+ * return the six mock sensors below instead of querying the database.
+ * Set this to false once the science-data-api is wired up. Or set to
+ * true to test the web app without connecting to the db
+ */
+export const USE_MOCK_SENSORS = true;
+
 const mockProject1 = new Project("Jacob's Home Test");
 const mockProject2 = new Project("Gotta be a second project name here fs");
 const defaultContactInfo = {contactFName: "Jacobo", contactLName: "comp", email: "email@getanemail.com"};
